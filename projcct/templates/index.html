@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ed">
+  <title>EduGenie | Study room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#home"><span class="brand-mark">e<span>+</span></span><span>edu<span class="brand-light">genie</span></span></a>
+      <p class="sidebar-label">STUDY SPACE</p>
+      <nav class="nav-list" aria-label="Main navigation">
+        <a class="nav-item active" href="#home"><span>◫</span> Overview</a>
+        <a class="nav-item" href="#tasks"><span>☷</span> My tasks <small id="nav-count">3</small></a>
+        <a class="nav-item" href="#quiz"><span>✳</span> Quick quiz</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="streak-card"><span class="streak-icon">✦</span><div><strong>4 day streak</strong><small>Keep your rhythm</small></div></div>
+        <div class="profile"><span class="avatar">S</span><div><strong>Student</strong><small>Learning journey</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="home">
+      <header class="topbar"><span class="breadcrumb">My workspace <i>/</i> <strong>Overview</strong></span><span class="today-label" id="today-label"></span></header>
+      <section class="welcome-row">
+        <div><p class="eyebrow">YOUR STUDY SPACE</p><h1>A little progress<br><em>goes a long way.</em></h1><p class="welcome-copy">Your learning space is ready when you are.</p></div>
+        <div class="weekly-card"><div class="weekly-heading"><span>WEEKLY FOCUS</span><span>5 HRS GOAL</span></div><div class="weekly-chart" id="weekly-chart"></div><div class="chart-days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div></div>
+      </section>
+      <section class="stat-strip">
+        <div class="stat-item"><span class="stat-icon coral">◷</span><div><strong>25 <small>min</small></strong><small>Focus goal today</small></div></div>
+        <div class="stat-item"><span class="stat-icon green">✓</span><div><strong id="completed-count">0</strong><small>Tasks completed</small></div></div>
+        <div class="stat-item"><span class="stat-icon blue">✳</span><div><strong>3</strong><small>Subjects in rotation</small></div></div>
+        <button class="focus-button" id="focus-button"><span>▶</span> Start focus</button>
+      </section>
+      <div class="content-grid">
+        <section class="tasks-section" id="tasks">
+          <div class="section-heading"><div><p class="eyebrow">MAKE IT HAPPEN</p><h2>Up next <span class="heading-count" id="task-count">0</span></h2></div><button class="add-button" id="open-task-form">＋ Add task</button></div>
+          <form class="task-form" id="task-form" hidden>
+            <label>Task title<input name="title" maxlength="100" placeholder="What would you like to work on?" required></label>
+            <div class="form-bottom"><label>Subject<select name="subject" required><option value="">Choose subject</option><option>Biology</option><option>Mathematics</option><option>Physics</option><option>Other</option></select></label><label>Due date<input name="due_date" maxlength="30" placeholder="e.g. Friday"></label><button type="submit">Save task →</button></div>
+            <p id="form-error" role="alert"></p>
+          </form>
+          <div class="task-list" id="task-list" aria-live="polite">Loading tasks...</div>
+          <p class="tasks-footer" id="tasks-footer-text">Small steps still move you forward.</p>
+        </section>
+        <aside class="side-column">
+          <section class="quiz-panel" id="quiz">
+            <div class="quiz-topline"><span>✳</span> QUICK QUIZ <small id="quiz-subject">TODAY'S PICK</small></div>
+            <h2>A tiny stretch<br>for your brain.</h2>
+            <p id="quiz-question">Loading a question...</p>
+            <div class="quiz-options" id="quiz-options"></div>
+            <p class="quiz-feedback" id="quiz-feedback" aria-live="polite"></p>
+            <button class="quiz-next" id="quiz-next" hidden>Try another →</button>
+          </section>
+          <section class="quote-panel"><span>“</span><blockquote>You don't have to see the whole staircase, just take the first step.</blockquote><small>MARTIN LUTHER KING JR.</small></section>
+        </aside>
+      </div>
+      <footer class="page-footer"><span>EDUGENIE · YOUR PERSONAL STUDY SPACE</span><span>ONE THING AT A TIME.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>
